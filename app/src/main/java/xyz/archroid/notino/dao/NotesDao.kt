@@ -1,6 +1,5 @@
 package xyz.archroid.notino.dao
 
-import android.provider.ContactsContract
 import androidx.room.*
 import xyz.archroid.notino.entities.Notes
 
@@ -10,8 +9,8 @@ interface NotesDao {
     val allNote: List<Notes>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertNotes(note:Notes)
+    suspend fun insertNotes(note: Notes)
 
     @Delete
-    fun deleteNotes(note:Notes)
+    suspend fun deleteNotes(note: Notes)
 }

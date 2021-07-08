@@ -3,4 +3,7 @@
     <string name="search">Search your notes</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="notes_title">Notes Title</string>
+    <string name="notes_description">Enter note here</string>
+    <string name="notes_subtitle">Notes Subtitle</string>
 </resources>

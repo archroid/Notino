@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryVariant"
-    tools:context=".HomeFragment">
+    android:background="@color/colorPrimaryVariant">
 
     <TextView
         android:id="@+id/tv_appName"
@@ -79,6 +78,7 @@
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_createNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/colorSecondary"
