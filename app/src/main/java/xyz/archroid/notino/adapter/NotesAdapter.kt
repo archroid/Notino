@@ -1,5 +1,7 @@
 package xyz.archroid.notino.adapter
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,10 +20,19 @@ class NotesAdapter(private val noteList: List<Notes>) :
         )
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.tv_title.text = noteList[position].title
         holder.itemView.tv_desc.text = noteList[position].noteText
         holder.itemView.tv_dateTime.text = noteList[position].dateTime
+
+        if (noteList[position].color != null) {
+            holder.itemView.cardView.setBackgroundColor(Color.parseColor(noteList[position].color))
+        } else {
+            holder.itemView.cardView.setBackgroundColor(R.color.ColorLightBlack)
+
+        }
+
     }
 
     override fun getItemCount(): Int {
