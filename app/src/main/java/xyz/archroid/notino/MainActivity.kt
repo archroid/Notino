@@ -1,7 +1,7 @@
 package xyz.archroid.notino
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
 class MainActivity : AppCompatActivity() {
@@ -9,16 +9,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        replaceFragment(HomeFragment.newInstance(),true)
+        replaceFragment(HomeFragment.newInstance(), true)
     }
 
-    fun replaceFragment(fragment: Fragment, isTransition:Boolean){
+    private fun replaceFragment(fragment: Fragment, isTransition: Boolean) {
 
         val fragmentTransition = supportFragmentManager.beginTransaction()
 
-        if(isTransition){
-            fragmentTransition.setCustomAnimations(android.R.anim.slide_out_right, android.R.anim.slide_in_left)
+        if (isTransition) {
+            fragmentTransition.setCustomAnimations(
+                android.R.anim.slide_out_right,
+                android.R.anim.slide_in_left
+            )
         }
-        fragmentTransition.replace(R.id.frameLayout, fragment).addToBackStack(fragment.javaClass.simpleName).commit()
+        fragmentTransition.replace(R.id.frameLayout, fragment)
+            .addToBackStack(fragment.javaClass.simpleName).commit()
     }
 }

@@ -8,11 +8,17 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_create_note.*
+import kotlinx.coroutines.launch
+import xyz.archroid.notino.database.NotesDatabase
+import xyz.archroid.notino.entities.BaseFragment
+import xyz.archroid.notino.entities.Notes
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class CreateNoteFragment : Fragment() {
+class CreateNoteFragment : BaseFragment() {
+
+    private var currentDate: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +31,6 @@ class CreateNoteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_create_note, container, false)
     }
 
@@ -45,7 +50,7 @@ class CreateNoteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val simpleDateFormat = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
-        val currentDate = simpleDateFormat.format(Date())
+        currentDate = simpleDateFormat.format(Date())
 
         tv_dateTime.text = currentDate
 
@@ -54,28 +59,43 @@ class CreateNoteFragment : Fragment() {
             saveNote()
         }
         btn_back.setOnClickListener {
-            replaceFragment(HomeFragment.newInstance() , false)
+            replaceFragment(HomeFragment.newInstance(), false)
         }
     }
 
     private fun saveNote() {
 
         //Validate variables
-        if (et_noteTitle.text.isNullOrEmpty()){
-            Toast.makeText(context,"Title required",Toast.LENGTH_SHORT).show();
+        if (et_noteTitle.text.isNullOrEmpty()) {
+            Toast.makeText(context, "Title required", Toast.LENGTH_SHORT).show()
         }
-        if (et_noteSubtitle.text.isNullOrEmpty()){
-            Toast.makeText(context,"Subtitle required",Toast.LENGTH_SHORT).show();
+        if (et_noteSubtitle.text.isNullOrEmpty()) {
+            Toast.makeText(context, "Subtitle required", Toast.LENGTH_SHORT).show()
         }
 
-        if (et_noteDesc.text.isNullOrEmpty()){
-            Toast.makeText(context,"Description required",Toast.LENGTH_SHORT).show();
+        if (et_noteDesc.text.isNullOrEmpty()) {
+            Toast.makeText(context, "Description required", Toast.LENGTH_SHORT).show()
+        }
+
+        launch {
+            val note = Notes()
+            note.title = et_noteTitle.text.toString()
+            note.subTitle = et_noteSubtitle.text.toString()
+            note.noteText = et_noteDesc.text.toString()
+            note.dateTime = currentDate
+
+            context?.let {
+                NotesDatabase.getDatabase(it).noteDao().insertNotes(note)
+                et_noteTitle.setText("")
+                et_noteSubtitle.setText("")
+                et_noteDesc.setText("")
+            }
         }
 
 
     }
 
-    fun replaceFragment(fragment: Fragment, isTransition: Boolean) {
+    private fun replaceFragment(fragment: Fragment, isTransition: Boolean) {
 
         val fragmentTransition = requireActivity().supportFragmentManager.beginTransaction()
 

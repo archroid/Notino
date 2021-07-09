@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_home.*
+import xyz.archroid.notino.entities.BaseFragment
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,14 +41,14 @@ class HomeFragment : Fragment() {
 
     }
 
-    fun replaceFragment(fragment: Fragment, isTransition: Boolean) {
+    private fun replaceFragment(fragment: Fragment, isTransition: Boolean) {
 
         val fragmentTransition = requireActivity().supportFragmentManager.beginTransaction()
 
         if (isTransition) {
             fragmentTransition.setCustomAnimations(
-                android.R.anim.slide_out_right,
-                android.R.anim.slide_in_left
+                android.R.anim.slide_in_left,
+                android.R.anim.slide_out_right
             )
         }
         fragmentTransition.replace(R.id.frameLayout, fragment)
