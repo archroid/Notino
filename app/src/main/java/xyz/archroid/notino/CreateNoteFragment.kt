@@ -11,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import kotlinx.android.synthetic.main.fragment_create_note.*
 import kotlinx.coroutines.launch
@@ -119,27 +118,12 @@ class CreateNoteFragment : BaseFragment() {
 
     }
 
-    private fun replaceFragment(fragment: Fragment, isTransition: Boolean) {
-
-        val fragmentTransition = requireActivity().supportFragmentManager.beginTransaction()
-
-        if (isTransition) {
-            fragmentTransition.setCustomAnimations(
-                android.R.anim.slide_out_right,
-                android.R.anim.slide_in_left
-            )
-        }
-        fragmentTransition.replace(R.id.frameLayout, fragment)
-            .addToBackStack(fragment.javaClass.simpleName).commit()
-    }
 
     private var broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
-
-            val actionColor = intent!!.getStringExtra("actionColor")
-
-            selectedColor = intent.getStringExtra("actionColor")!!
+            selectedColor = intent?.getStringExtra("selectedColor")!!
             view_color.setBackgroundColor(Color.parseColor(selectedColor))
+
         }
 
     }

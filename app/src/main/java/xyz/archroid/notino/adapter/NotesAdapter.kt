@@ -27,10 +27,9 @@ class NotesAdapter(private val noteList: List<Notes>) :
         holder.itemView.tv_dateTime.text = noteList[position].dateTime
 
         if (noteList[position].color != null) {
-            holder.itemView.cardView.setBackgroundColor(Color.parseColor(noteList[position].color))
+            holder.itemView.colorView.setBackgroundColor(Color.parseColor(noteList[position].color))
         } else {
-            holder.itemView.cardView.setBackgroundColor(R.color.ColorLightBlack)
-
+            holder.itemView.colorView.setBackgroundColor(R.color.ColorLightBlack)
         }
 
     }

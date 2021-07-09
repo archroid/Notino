@@ -88,6 +88,11 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setListener()
+    }
+
     private fun setListener() {
 
         layout_note1.setOnClickListener {
@@ -119,12 +124,11 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
             selectedColor = "#ffd633"
 
-            layout_note1.setOnClickListener {
-                val intent = Intent("bottom_sheet_action")
-                intent.putExtra("action", "Yellow")
-                intent.putExtra("selectedColor", selectedColor)
-                LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
-            }
+            val intent = Intent("bottom_sheet_action")
+            intent.putExtra("action", "Yellow")
+            intent.putExtra("selectedColor", selectedColor)
+            LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
+
         }
 
         layout_note3.setOnClickListener {
@@ -137,13 +141,12 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             img_note7.visibility = View.GONE
 
             selectedColor = "#ffffff"
+            val intent = Intent("bottom_sheet_action")
+            intent.putExtra("action", "White")
+            intent.putExtra("selectedColor", selectedColor)
+            LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
 
-            layout_note1.setOnClickListener {
-                val intent = Intent("bottom_sheet_action")
-                intent.putExtra("action", "White")
-                intent.putExtra("selectedColor", selectedColor)
-                LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
-            }
+
         }
 
         layout_note4.setOnClickListener {
@@ -157,12 +160,11 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
             selectedColor = "#ae3b76"
 
-            layout_note1.setOnClickListener {
-                val intent = Intent("bottom_sheet_action")
-                intent.putExtra("action", "Purple")
-                intent.putExtra("selectedColor", selectedColor)
-                LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
-            }
+            val intent = Intent("bottom_sheet_action")
+            intent.putExtra("action", "Purple")
+            intent.putExtra("selectedColor", selectedColor)
+            LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
+
         }
 
         layout_note5.setOnClickListener {
@@ -176,12 +178,11 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
             selectedColor = "#0aebaf"
 
-            layout_note1.setOnClickListener {
-                val intent = Intent("bottom_sheet_action")
-                intent.putExtra("action", "Green")
-                intent.putExtra("selectedColor", selectedColor)
-                LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
-            }
+            val intent = Intent("bottom_sheet_action")
+            intent.putExtra("action", "Green")
+            intent.putExtra("selectedColor", selectedColor)
+            LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
+
         }
 
         layout_note6.setOnClickListener {
@@ -194,13 +195,11 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             img_note7.visibility = View.GONE
 
             selectedColor = "#ff7746"
+            val intent = Intent("bottom_sheet_action")
+            intent.putExtra("action", "Orange")
+            intent.putExtra("selectedColor", selectedColor)
+            LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)//
 
-            layout_note1.setOnClickListener {
-                val intent = Intent("bottom_sheet_action")
-                intent.putExtra("action", "Orange")
-                intent.putExtra("selectedColor", selectedColor)
-                LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
-            }
         }
 
         layout_note7.setOnClickListener {
@@ -214,12 +213,11 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
             selectedColor = "#202734"
 
-            layout_note1.setOnClickListener {
-                val intent = Intent("bottom_sheet_action")
-                intent.putExtra("action", "Black")
-                intent.putExtra("selectedColor", selectedColor)
-                LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
-            }
+            val intent = Intent("bottom_sheet_action")
+            intent.putExtra("action", "Black")
+            intent.putExtra("selectedColor", selectedColor)
+            LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
+
         }
 
     }
