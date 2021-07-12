@@ -1,19 +1,24 @@
 package xyz.archroid.notino
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import kotlinx.android.synthetic.main.fragment_create_note.*
 import kotlinx.coroutines.launch
+import pub.devrel.easypermissions.AppSettingsDialog
+import pub.devrel.easypermissions.EasyPermissions
 import xyz.archroid.notino.database.NotesDatabase
 import xyz.archroid.notino.entities.BaseFragment
 import xyz.archroid.notino.entities.Notes
@@ -22,10 +27,14 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class CreateNoteFragment : BaseFragment() {
+class CreateNoteFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
+    EasyPermissions.RationaleCallbacks {
+
 
     private var currentDate: String? = null
-    var selectedColor = "#4e33ff"
+    private var selectedColor = "#4e33ff"
+    private val READ_STORAGE_PERM = 123
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,7 +95,6 @@ class CreateNoteFragment : BaseFragment() {
     }
 
     private fun saveNote() {
-
         //Validate variables
         if (et_noteTitle.text.isNullOrEmpty()) {
             Toast.makeText(context, "Title required", Toast.LENGTH_SHORT).show()
@@ -121,9 +129,17 @@ class CreateNoteFragment : BaseFragment() {
 
     private var broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
-            selectedColor = intent?.getStringExtra("selectedColor")!!
-            view_color.setBackgroundColor(Color.parseColor(selectedColor))
+            val actionColor = intent!!.getStringExtra("action")
+            when (actionColor!!) {
+                "color" -> {
+                    selectedColor = intent.getStringExtra("selectedColor")!!
+                    view_color.setBackgroundColor(Color.parseColor(selectedColor))
+                }
+                "image" -> {
+                    readStorageTask()
+                }
 
+            }
         }
 
     }
@@ -131,5 +147,70 @@ class CreateNoteFragment : BaseFragment() {
     override fun onDestroy() {
         LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(broadcastReceiver)
         super.onDestroy()
+    }
+
+    //Pick and Handle Image from gallery
+    val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) {
+        if (it != null) {
+            val inputStream = requireActivity().contentResolver.openInputStream(it)
+            val bitmap = BitmapFactory.decodeStream(inputStream)
+            iv_note.setImageBitmap(bitmap)
+            iv_note.visibility = View.VISIBLE
+        }
+    }
+
+
+    // Grant Storage Permission
+    private fun hasReadStoragePerm(): Boolean {
+        return EasyPermissions.hasPermissions(
+            requireContext(),
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        )
+    }
+
+    private fun readStorageTask() {
+        if (hasReadStoragePerm()) {
+            getContent.launch("image/*")
+        } else {
+            EasyPermissions.requestPermissions(
+                requireActivity(),
+                getString(R.string.read_storage_msg),
+                READ_STORAGE_PERM,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            )
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        EasyPermissions.onRequestPermissionsResult(
+            requestCode,
+            permissions,
+            grantResults,
+            requireActivity()
+        )
+    }
+
+    override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(requireActivity(), perms)) {
+            AppSettingsDialog.Builder(requireActivity()).build().show()
+        }
+    }
+
+    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
+
+    }
+
+    override fun onRationaleDenied(requestCode: Int) {
+
+    }
+
+    override fun onRationaleAccepted(requestCode: Int) {
+
     }
 }

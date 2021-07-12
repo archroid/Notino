@@ -6,4 +6,8 @@
     <string name="notes_title">Notes Title</string>
     <string name="notes_description">Enter note here</string>
     <string name="notes_subtitle">Notes Subtitle</string>
+    <string name="add_image">Add Image</string>
+    <string name="pick_color">Pick Color</string>
+    <string name="read_storage_msg">This app needs access to your storage</string>
+    <string name="permission_granted">Permission Granted!</string>
 </resources>
