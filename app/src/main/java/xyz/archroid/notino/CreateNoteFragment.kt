@@ -8,7 +8,11 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
+import android.provider.DocumentsContract
+import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,6 +38,7 @@ class CreateNoteFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
     private var currentDate: String? = null
     private var selectedColor = "#4e33ff"
     private val READ_STORAGE_PERM = 123
+    private var selectedImagePath: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -114,12 +119,15 @@ class CreateNoteFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
             note.noteText = et_noteDesc.text.toString()
             note.dateTime = currentDate
             note.color = selectedColor
+            note.imgPath = selectedImagePath
 
             context?.let {
                 NotesDatabase.getDatabase(it).noteDao().insertNotes(note)
                 et_noteTitle.setText("")
                 et_noteSubtitle.setText("")
                 et_noteDesc.setText("")
+                iv_note.visibility = View.GONE
+                requireActivity().supportFragmentManager.popBackStack()
             }
         }
 
@@ -150,13 +158,56 @@ class CreateNoteFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
     }
 
     //Pick and Handle Image from gallery
-    val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) {
+    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) {
         if (it != null) {
             val inputStream = requireActivity().contentResolver.openInputStream(it)
             val bitmap = BitmapFactory.decodeStream(inputStream)
             iv_note.setImageBitmap(bitmap)
             iv_note.visibility = View.VISIBLE
+
+            selectedImagePath = getRealPathFromURI(it)
+            Log.d("TAG", ": " + selectedImagePath)
+
         }
+    }
+
+    //
+//    private fun getRealPathFromURI(contentURI: Uri): String? {
+//        val result: String?
+//        val cursor: Cursor? =
+//            requireContext().contentResolver.query(contentURI, null, null, null, null)
+//        if (cursor == null) {
+//            result = contentURI.path
+//        } else {
+//            cursor.moveToFirst()
+//            val idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
+//            result = cursor.getString(idx)
+//            cursor.close()
+//        }
+//        return result
+//    }
+//
+    @SuppressLint("Recycle")
+    fun getRealPathFromURI(uri: Uri?): String {
+        var filePath = ""
+        val wholeID = DocumentsContract.getDocumentId(uri)
+
+        // Split at colon, use second item in the array
+        val id = wholeID.split(":").toTypedArray()[1]
+        val column = arrayOf(MediaStore.Images.Media.DATA)
+
+        // where id is equal to
+        val sel = MediaStore.Images.Media._ID + "=?"
+        val cursor = requireContext().contentResolver.query(
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+            column, sel, arrayOf(id), null
+        )
+        val columnIndex = cursor!!.getColumnIndex(column[0])
+        if (cursor.moveToFirst()) {
+            filePath = cursor.getString(columnIndex)
+        }
+        cursor.close()
+        return filePath
     }
 
 

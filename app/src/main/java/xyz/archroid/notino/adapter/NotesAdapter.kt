@@ -1,6 +1,7 @@
 package xyz.archroid.notino.adapter
 
 import android.annotation.SuppressLint
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -30,6 +31,11 @@ class NotesAdapter(private val noteList: List<Notes>) :
             holder.itemView.colorView.setBackgroundColor(Color.parseColor(noteList[position].color))
         } else {
             holder.itemView.colorView.setBackgroundColor(R.color.ColorLightBlack)
+        }
+
+        if (noteList[position].imgPath != null) {
+            holder.itemView.iv_image.setImageBitmap(BitmapFactory.decodeFile(noteList[position].imgPath))
+            holder.itemView.iv_image.visibility = View.VISIBLE
         }
 
     }
