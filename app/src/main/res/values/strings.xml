@@ -10,4 +10,6 @@
     <string name="pick_color">Pick Color</string>
     <string name="read_storage_msg">This app needs access to your storage</string>
     <string name="permission_granted">Permission Granted!</string>
+    <string name="add_web_url">Add Web URL</string>
+    <string name="enter_web_url">Enter web Url</string>
 </resources>

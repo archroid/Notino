@@ -16,7 +16,7 @@ import xyz.archroid.notino.R
 
 class BottomSheetFragment : BottomSheetDialogFragment() {
 
-    var selectedColor = "#171C26"
+    var selectedColor = "blue"
 
 
     companion object {
@@ -102,9 +102,9 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             img_note4.visibility = View.GONE
             img_note5.visibility = View.GONE
             img_note6.visibility = View.GONE
-            img_note7.visibility = View.GONE
+            
 
-            selectedColor = "#4e33ff"
+            selectedColor = "blue"
 
             val intent = Intent("bottom_sheet_action")
             intent.putExtra("action", "color")
@@ -120,9 +120,9 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             img_note4.visibility = View.GONE
             img_note5.visibility = View.GONE
             img_note6.visibility = View.GONE
-            img_note7.visibility = View.GONE
+            
 
-            selectedColor = "#ffd633"
+            selectedColor = "yellow"
 
             val intent = Intent("bottom_sheet_action")
             intent.putExtra("action", "color")
@@ -138,9 +138,9 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             img_note4.visibility = View.GONE
             img_note5.visibility = View.GONE
             img_note6.visibility = View.GONE
-            img_note7.visibility = View.GONE
+            
 
-            selectedColor = "#ffffff"
+            selectedColor = "red"
             val intent = Intent("bottom_sheet_action")
             intent.putExtra("action", "color")
             intent.putExtra("selectedColor", selectedColor)
@@ -156,9 +156,9 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             img_note4.visibility = View.VISIBLE
             img_note5.visibility = View.GONE
             img_note6.visibility = View.GONE
-            img_note7.visibility = View.GONE
+            
 
-            selectedColor = "#ae3b76"
+            selectedColor = "purple"
 
             val intent = Intent("bottom_sheet_action")
             intent.putExtra("action", "color")
@@ -174,9 +174,9 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             img_note4.visibility = View.GONE
             img_note5.visibility = View.VISIBLE
             img_note6.visibility = View.GONE
-            img_note7.visibility = View.GONE
+            
 
-            selectedColor = "#0aebaf"
+            selectedColor = "green"
 
             val intent = Intent("bottom_sheet_action")
             intent.putExtra("action", "color")
@@ -192,9 +192,9 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             img_note4.visibility = View.GONE
             img_note5.visibility = View.GONE
             img_note6.visibility = View.VISIBLE
-            img_note7.visibility = View.GONE
+            
 
-            selectedColor = "#ff7746"
+            selectedColor = "pink"
             val intent = Intent("bottom_sheet_action")
             intent.putExtra("action", "color")
             intent.putExtra("selectedColor", selectedColor)
@@ -202,29 +202,19 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
         }
 
-        layout_note7.setOnClickListener {
-            img_note1.visibility = View.GONE
-            img_note2.visibility = View.GONE
-            img_note3.visibility = View.GONE
-            img_note4.visibility = View.GONE
-            img_note5.visibility = View.GONE
-            img_note6.visibility = View.GONE
-            img_note7.visibility = View.VISIBLE
-
-            selectedColor = "#202734"
-
-            val intent = Intent("bottom_sheet_action")
-            intent.putExtra("action", "color")
-            intent.putExtra("selectedColor", selectedColor)
-            LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
-
-        }
 
         ly_addImage.setOnClickListener{
             val intent = Intent("bottom_sheet_action")
             intent.putExtra("action", "image")
             LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
         }
+
+        ly_addURL.setOnClickListener{
+            val intent = Intent("bottom_sheet_action")
+            intent.putExtra("action", "webUrl")
+            LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
+        }
+
 
     }
 

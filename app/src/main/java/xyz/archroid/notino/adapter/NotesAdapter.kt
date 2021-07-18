@@ -23,14 +23,13 @@ class NotesAdapter(private val noteList: List<Notes>) :
 
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemView.tv_title.text = noteList[position].title
-        holder.itemView.tv_desc.text = noteList[position].noteText
+        holder.itemView.tv_subtitle.text = noteList[position].subTitle
         holder.itemView.tv_dateTime.text = noteList[position].dateTime
 
         if (noteList[position].color != null) {
-            holder.itemView.colorView.setBackgroundColor(Color.parseColor(noteList[position].color))
+            holder.itemView.note_item.setCardBackgroundColor(Color.parseColor(noteList[position].color))
         } else {
-            holder.itemView.colorView.setBackgroundColor(R.color.ColorLightBlack)
+            holder.itemView.note_item.setCardBackgroundColor(R.color.ColorBlueNote)
         }
 
         if (noteList[position].imgPath != null) {

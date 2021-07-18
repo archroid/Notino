@@ -12,7 +12,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.DocumentsContract
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,7 +35,7 @@ class CreateNoteFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
 
 
     private var currentDate: String? = null
-    private var selectedColor = "#4e33ff"
+    private var selectedColor = "#81deea"
     private val READ_STORAGE_PERM = 123
     private var selectedImagePath: String? = null
 
@@ -75,9 +74,9 @@ class CreateNoteFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
             broadcastReceiver, IntentFilter("bottom_sheet_action")
         )
 
-        view_color.setBackgroundColor(Color.parseColor(selectedColor))
+        view_color.setBackgroundColor(Color.parseColor("#81deea"))
 
-        val simpleDateFormat = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+        val simpleDateFormat = SimpleDateFormat("MMMM dd, yyyy")
         currentDate = simpleDateFormat.format(Date())
 
         tv_dateTime.text = currentDate
@@ -141,10 +140,43 @@ class CreateNoteFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
             when (actionColor!!) {
                 "color" -> {
                     selectedColor = intent.getStringExtra("selectedColor")!!
-                    view_color.setBackgroundColor(Color.parseColor(selectedColor))
+                    when (selectedColor) {
+                        "blue" -> {
+                            view_color.setBackgroundColor(Color.parseColor("#81deea"))
+                            selectedColor = "#81deea"
+                        }
+
+                        "red" -> {
+                            view_color.setBackgroundColor(Color.parseColor("#ffab91"))
+                            selectedColor = "#ffab91"
+                        }
+
+                        "yellow" -> {
+                            view_color.setBackgroundColor(Color.parseColor("#ffcc80"))
+                            selectedColor = "#ffcc80"
+                        }
+
+                        "green" -> {
+                            view_color.setBackgroundColor(Color.parseColor("#e7ed9b"))
+                            selectedColor = "#e7ed9b"
+                        }
+
+                        "purple" -> {
+                            view_color.setBackgroundColor(Color.parseColor("#cf94da"))
+                            selectedColor = "#cf94da"
+                        }
+                        "pink" -> {
+                            view_color.setBackgroundColor(Color.parseColor("#f48fb1"))
+                            selectedColor = "#f48fb1"
+                        }
+
+                    }
                 }
                 "image" -> {
                     readStorageTask()
+                }
+                "webUrl" -> {
+
                 }
 
             }
@@ -166,29 +198,11 @@ class CreateNoteFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
             iv_note.visibility = View.VISIBLE
 
             selectedImagePath = getRealPathFromURI(it)
-            Log.d("TAG", ": " + selectedImagePath)
-
         }
     }
 
-    //
-//    private fun getRealPathFromURI(contentURI: Uri): String? {
-//        val result: String?
-//        val cursor: Cursor? =
-//            requireContext().contentResolver.query(contentURI, null, null, null, null)
-//        if (cursor == null) {
-//            result = contentURI.path
-//        } else {
-//            cursor.moveToFirst()
-//            val idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
-//            result = cursor.getString(idx)
-//            cursor.close()
-//        }
-//        return result
-//    }
-//
-    @SuppressLint("Recycle")
-    fun getRealPathFromURI(uri: Uri?): String {
+
+    private fun getRealPathFromURI(uri: Uri?): String {
         var filePath = ""
         val wholeID = DocumentsContract.getDocumentId(uri)
 

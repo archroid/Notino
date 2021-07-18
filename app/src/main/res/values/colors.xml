@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#171C26</color>
-    <color name="colorPrimaryVariant">#10141C</color>
-    <color name="colorSecondary">#4e33ff</color>
+    <color name="colorPrimary">#252525</color>
+    <color name="colorPrimaryVariant">#252525</color>
+    <color name="colorSecondary">#706fc8</color>
     <color name="ColorWhite">#ffffff</color>
     <color name="ColorGray">#CACACA</color>
-    <color name="ColorLightBlack">#171C26</color>
-    <color name="ColorText">#606570</color>
-    <color name="ColorDarkBlack">#10141C</color>
+    <color name="ColorLightBlack">#252525</color>
+    <color name="ColorText">#3b3b3b</color>
+    <color name="ColorDarkBlack">#252525</color>
     <color name="ColorYellow">#ffd633</color>
     <color name="ColorBlue">#4e33ff</color>
 
-    <color name="ColorDefaultNote">#606570</color>
-    <color name="ColorBlueNote">#4e33ff</color>
-    <color name="ColorYellowNote">#ffd633</color>
-    <color name="ColorWhiteNote">#ffffff</color>
-    <color name="ColorPurpleNote">#ae3b76</color>
-    <color name="ColorGreenNote">#0aebaf</color>
-    <color name="ColorOrangeNote">#ff7746</color>
-    <color name="ColorBlackNote">#202734</color>
+    <color name="ColorRedNote">#ffab91</color>
+    <color name="ColorYellowNote">#ffcc80</color>
+    <color name="ColorGreenNote">#e7ed9b</color>
+    <color name="ColorBlueNote">#81deea</color>
+    <color name="ColorPurpleNote">#cf94da</color>
+    <color name="ColorPinkNote">#f48fb1</color>
+
+    <color name="background">#252525</color>
+    <color name="background_selected">#3b3b3b</color>
 </resources>
