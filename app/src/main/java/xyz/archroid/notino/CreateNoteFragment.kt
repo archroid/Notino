@@ -79,8 +79,6 @@ class CreateNoteFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
         val simpleDateFormat = SimpleDateFormat("MMMM dd, yyyy")
         currentDate = simpleDateFormat.format(Date())
 
-        tv_dateTime.text = currentDate
-
         img_more.setOnClickListener {
             val bottomSheetFragment = BottomSheetFragment.newInstance()
             bottomSheetFragment.show(
@@ -100,10 +98,10 @@ class CreateNoteFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
 
     private fun saveNote() {
         //Validate variables
-        if (et_noteTitle.text.isNullOrEmpty()) {
+        if (editText_title.text.isNullOrEmpty()) {
             Toast.makeText(context, "Title required", Toast.LENGTH_SHORT).show()
         }
-        if (et_noteSubtitle.text.isNullOrEmpty()) {
+        if (editText_subtitle.text.isNullOrEmpty()) {
             Toast.makeText(context, "Subtitle required", Toast.LENGTH_SHORT).show()
         }
 
@@ -113,8 +111,8 @@ class CreateNoteFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
 
         launch {
             val note = Notes()
-            note.title = et_noteTitle.text.toString()
-            note.subTitle = et_noteSubtitle.text.toString()
+            note.title = editText_title.text.toString()
+            note.subTitle = editText_subtitle.text.toString()
             note.noteText = et_noteDesc.text.toString()
             note.dateTime = currentDate
             note.color = selectedColor
@@ -122,8 +120,8 @@ class CreateNoteFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
 
             context?.let {
                 NotesDatabase.getDatabase(it).noteDao().insertNotes(note)
-                et_noteTitle.setText("")
-                et_noteSubtitle.setText("")
+                editText_title.setText("")
+                editText_subtitle.setText("")
                 et_noteDesc.setText("")
                 iv_note.visibility = View.GONE
                 requireActivity().supportFragmentManager.popBackStack()

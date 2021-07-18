@@ -6,118 +6,110 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryVariant">
 
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/btn_back"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:backgroundTint="@color/colorPrimaryVariant"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imageView_button_1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:src="@drawable/ic_back"
-            app:tint="@color/ColorWhite" />
-    </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btn_back"
+            android:layout_width="@dimen/_34sdp"
+            android:layout_height="@dimen/_34sdp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:backgroundTint="@color/background_selected"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageView_button_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_back"
+                app:tint="@color/ColorWhite" />
+        </com.google.android.material.card.MaterialCardView>
 
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/btn_done"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:backgroundTint="@color/colorPrimaryVariant"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btn_done"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_34sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:backgroundTint="@color/background_selected"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:src="@drawable/ic_tick"
-            app:tint="@color/ColorWhite" />
-    </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/manrope_bold"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp"
+                android:text="@string/save"
+                android:textColor="@color/ColorWhite"
+                android:textSize="@dimen/_13sdp" />
 
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </RelativeLayout>
 
     <EditText
-        android:id="@+id/et_noteTitle"
+        android:id="@+id/editText_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
         android:background="@null"
         android:ellipsize="end"
         android:fontFamily="@font/manrope_bold"
-        android:hint="@string/notes_title"
+        android:hint="@string/title"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:maxLines="1"
         android:padding="@dimen/_10sdp"
         android:textColor="@color/ColorWhite"
-        android:textColorHint="@color/ColorGray"
-        android:textSize="@dimen/_14ssp"
+        android:textColorHint="@color/ColorText"
+        android:textSize="@dimen/_23ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_back" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-    <TextView
-        android:id="@+id/tv_dateTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_5sdp"
-        android:ellipsize="end"
-        android:fontFamily="@font/manrope_bold"
-        android:importantForAutofill="no"
-        android:maxLines="1"
-        android:paddingStart="@dimen/_10sdp"
-        android:textColor="@color/ColorGray"
-        android:textColorHint="@color/ColorGray"
-        android:textSize="@dimen/_8ssp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_noteTitle"
-        tools:ignore="RtlSymmetry" />
 
     <LinearLayout
-        android:id="@+id/ly_subtitle"
+        android:id="@+id/layout_subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_dateTime">
+        app:layout_constraintTop_toBottomOf="@id/editText_title">
 
         <View
             android:id="@+id/view_color"
             android:layout_width="@dimen/_5sdp"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/_5sdp"
-            android:background="@color/ColorBlue" />
+            android:background="@color/ColorBlueNote" />
 
         <EditText
-            android:id="@+id/et_noteSubtitle"
+            android:id="@+id/editText_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -125,24 +117,24 @@
             android:fontFamily="@font/manrope_regular"
             android:hint="@string/notes_subtitle"
             android:importantForAutofill="no"
-            android:inputType="textPersonName"
-            android:maxLines="1"
+            android:inputType="textMultiLine"
             android:padding="@dimen/_10sdp"
-            android:textColor="@color/ColorWhite"
-            android:textColorHint="@color/ColorGray"
-            android:textSize="@dimen/_10ssp" />
+            android:textColor="@color/ColorText"
+            android:textColorHint="@color/ColorText"
+            android:textSize="@dimen/_16ssp" />
     </LinearLayout>
 
     <ImageView
         android:id="@+id/iv_note"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_300sdp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
+        android:maxHeight="@dimen/_200sdp"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/et_noteDesc"
-        app:layout_constraintTop_toBottomOf="@id/ly_subtitle"
+        app:layout_constraintTop_toBottomOf="@id/layout_subtitle"
         tools:ignore="ContentDescription" />
 
     <LinearLayout
@@ -150,6 +142,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_note">
@@ -178,13 +171,13 @@
         android:layout_margin="@dimen/_10sdp"
         android:background="@null"
         android:fontFamily="@font/manrope_regular"
-        android:hint="@string/notes_description"
+        android:hint="@string/type_sth"
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
         android:padding="@dimen/_10sdp"
-        android:textColor="@color/ColorWhite"
-        android:textColorHint="@color/ColorGray"
-        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/ColorText"
+        android:textColorHint="@color/ColorText"
+        android:textSize="@dimen/_14ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_webUrl" />
