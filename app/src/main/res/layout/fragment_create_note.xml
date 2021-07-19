@@ -90,7 +90,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-
     <LinearLayout
         android:id="@+id/layout_subtitle"
         android:layout_width="match_parent"
@@ -183,22 +182,27 @@
         app:layout_constraintTop_toBottomOf="@id/layout_webUrl" />
 
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_40sdp"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btn_sheet"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:backgroundTint="@color/background_selected"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <ImageView
-            android:id="@+id/img_more"
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
-            android:layout_gravity="center"
-            android:src="@drawable/img_bar"
-            tools:ignore="ContentDescription" />
-
-    </FrameLayout>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_more"
+            app:tint="@color/ColorWhite" />
+    </com.google.android.material.card.MaterialCardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

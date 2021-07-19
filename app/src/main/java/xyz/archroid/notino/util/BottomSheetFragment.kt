@@ -14,6 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_bottom_sheet.*
 import xyz.archroid.notino.R
 
+
 class BottomSheetFragment : BottomSheetDialogFragment() {
 
     var selectedColor = "blue"
@@ -30,6 +31,11 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 //            noteId = id
             return fragment
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(STYLE_NORMAL, R.style.BottomSheetDialogStyle);
     }
 
     @SuppressLint("RestrictedApi", "InflateParams")
@@ -102,7 +108,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             img_note4.visibility = View.GONE
             img_note5.visibility = View.GONE
             img_note6.visibility = View.GONE
-            
+
 
             selectedColor = "blue"
 
@@ -120,7 +126,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             img_note4.visibility = View.GONE
             img_note5.visibility = View.GONE
             img_note6.visibility = View.GONE
-            
+
 
             selectedColor = "yellow"
 
@@ -138,7 +144,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             img_note4.visibility = View.GONE
             img_note5.visibility = View.GONE
             img_note6.visibility = View.GONE
-            
+
 
             selectedColor = "red"
             val intent = Intent("bottom_sheet_action")
@@ -156,7 +162,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             img_note4.visibility = View.VISIBLE
             img_note5.visibility = View.GONE
             img_note6.visibility = View.GONE
-            
+
 
             selectedColor = "purple"
 
@@ -174,7 +180,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             img_note4.visibility = View.GONE
             img_note5.visibility = View.VISIBLE
             img_note6.visibility = View.GONE
-            
+
 
             selectedColor = "green"
 
@@ -192,7 +198,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             img_note4.visibility = View.GONE
             img_note5.visibility = View.GONE
             img_note6.visibility = View.VISIBLE
-            
+
 
             selectedColor = "pink"
             val intent = Intent("bottom_sheet_action")
@@ -203,13 +209,13 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         }
 
 
-        ly_addImage.setOnClickListener{
+        ly_addImage.setOnClickListener {
             val intent = Intent("bottom_sheet_action")
             intent.putExtra("action", "image")
             LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
         }
 
-        ly_addURL.setOnClickListener{
+        ly_addURL.setOnClickListener {
             val intent = Intent("bottom_sheet_action")
             intent.putExtra("action", "webUrl")
             LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)

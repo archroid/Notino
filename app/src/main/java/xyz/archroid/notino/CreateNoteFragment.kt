@@ -79,7 +79,7 @@ class CreateNoteFragment : BaseFragment(), EasyPermissions.PermissionCallbacks,
         val simpleDateFormat = SimpleDateFormat("MMMM dd, yyyy")
         currentDate = simpleDateFormat.format(Date())
 
-        img_more.setOnClickListener {
+        btn_sheet.setOnClickListener {
             val bottomSheetFragment = BottomSheetFragment.newInstance()
             bottomSheetFragment.show(
                 requireActivity().supportFragmentManager,

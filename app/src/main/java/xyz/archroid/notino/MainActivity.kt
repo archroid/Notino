@@ -23,6 +23,6 @@ class MainActivity : AppCompatActivity() {
             )
         }
         fragmentTransition.replace(R.id.frameLayout, fragment)
-            .addToBackStack(fragment.javaClass.simpleName).commit()
+            .commit()
     }
 }

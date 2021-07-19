@@ -13,4 +13,5 @@
     <string name="add_web_url">Add Web URL</string>
     <string name="enter_web_url">Enter web Url</string>
     <string name="save">Save</string>
+    <string name="nothing_to_show">Nothing to show!</string>
 </resources>

@@ -46,6 +46,12 @@ class HomeFragment : BaseFragment() {
         launch {
             context?.let {
                 val notes = NotesDatabase.getDatabase(it).noteDao().getAllNotes()
+                if (notes.isEmpty()){
+                    layout_nothing.visibility = View.VISIBLE
+                }else{
+                    layout_nothing.visibility = View.GONE
+                }
+
                 recyclerView.adapter = NotesAdapter(notes)
             }
         }
