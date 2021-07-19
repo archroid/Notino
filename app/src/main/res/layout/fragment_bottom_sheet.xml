@@ -19,10 +19,11 @@
 
         <ImageView
             android:id="@+id/img_more"
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
             android:layout_gravity="center"
             android:src="@drawable/img_bar"
+            app:tint="@color/ColorWhite"
             tools:ignore="ContentDescription" />
 
     </FrameLayout>
@@ -38,13 +39,14 @@
         android:text="@string/pick_color"
         android:textAlignment="center"
         android:textColor="@color/ColorGray"
-        android:textSize="@dimen/_12ssp" />
+        android:textSize="@dimen/_13ssp" />
 
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_20sdp"
         android:orientation="horizontal"
         android:padding="@dimen/_5sdp">
 
@@ -55,8 +57,8 @@
             tools:ignore="RtlSymmetry">
 
             <View
-                android:layout_width="@dimen/_24sdp"
-                android:layout_height="@dimen/_24sdp"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
                 android:background="@drawable/note_color_1" />
 
             <ImageView
@@ -78,8 +80,8 @@
             tools:ignore="RtlSymmetry">
 
             <View
-                android:layout_width="@dimen/_24sdp"
-                android:layout_height="@dimen/_24sdp"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
                 android:background="@drawable/note_color_2" />
 
             <ImageView
@@ -101,8 +103,8 @@
             tools:ignore="RtlSymmetry">
 
             <View
-                android:layout_width="@dimen/_24sdp"
-                android:layout_height="@dimen/_24sdp"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
                 android:background="@drawable/note_color_3" />
 
             <ImageView
@@ -124,8 +126,8 @@
             tools:ignore="RtlSymmetry">
 
             <View
-                android:layout_width="@dimen/_24sdp"
-                android:layout_height="@dimen/_24sdp"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
                 android:background="@drawable/note_color_4" />
 
             <ImageView
@@ -147,8 +149,8 @@
             tools:ignore="RtlSymmetry">
 
             <View
-                android:layout_width="@dimen/_24sdp"
-                android:layout_height="@dimen/_24sdp"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
                 android:background="@drawable/note_color_5" />
 
             <ImageView
@@ -170,8 +172,8 @@
             tools:ignore="RtlSymmetry">
 
             <View
-                android:layout_width="@dimen/_24sdp"
-                android:layout_height="@dimen/_24sdp"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
                 android:background="@drawable/note_color_6" />
 
             <ImageView
@@ -188,94 +190,108 @@
 
     </LinearLayout>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/ly_addImage"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_5sdp"
-        android:backgroundTint="@color/colorPrimary"
-        android:clickable="true"
-        android:focusable="true"
+        android:layout_marginBottom="@dimen/_10sdp"
         android:orientation="horizontal"
+        android:layout_gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:padding="@dimen/_5sdp"
-            tools:ignore="UseCompoundDrawables">
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btn_addImage"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_34sdp"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/background_selected"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp">
 
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:src="@drawable/ic_images"
-                app:tint="@color/ColorWhite"
-                tools:ignore="ContentDescription" />
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:ellipsize="end"
-                android:fontFamily="@font/manrope_bold"
-                android:maxLines="1"
-                android:text="@string/add_image"
-                android:textColor="@color/ColorGray"
-                android:textSize="@dimen/_12ssp"
-                tools:ignore="RtlSymmetry" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                tools:ignore="UseCompoundDrawables">
 
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+                <ImageView
+                    android:layout_width="@dimen/_17sdp"
+                    android:layout_height="@dimen/_17sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:src="@drawable/ic_images"
+                    app:tint="@color/ColorWhite"
+                    tools:ignore="ContentDescription" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/ly_addURL"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_5sdp"
-        android:backgroundTint="@color/colorPrimary"
-        android:clickable="true"
-        android:focusable="true"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/manrope_bold"
+                    android:maxLines="1"
+                    android:text="@string/add_image"
+                    android:textColor="@color/ColorWhite"
+                    android:textSize="@dimen/_12ssp"
+                    tools:ignore="RtlSymmetry" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:padding="@dimen/_5sdp"
-            tools:ignore="UseCompoundDrawables">
+            </LinearLayout>
 
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:src="@drawable/ic_link"
-                app:tint="@color/ColorWhite"
-                tools:ignore="ContentDescription" />
+        </com.google.android.material.card.MaterialCardView>
 
-            <TextView
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btn_addWebUrl"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_34sdp"
+            android:layout_gravity="center_horizontal|end"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:backgroundTint="@color/background_selected"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:ellipsize="end"
-                android:fontFamily="@font/manrope_bold"
-                android:maxLines="1"
-                android:text="@string/add_web_url"
-                android:textColor="@color/ColorGray"
-                android:textSize="@dimen/_12ssp"
-                tools:ignore="RtlSymmetry" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                tools:ignore="UseCompoundDrawables">
 
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+                <ImageView
+                    android:layout_width="@dimen/_17sdp"
+                    android:layout_height="@dimen/_17sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:src="@drawable/ic_link"
+                    app:tint="@color/ColorWhite"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/manrope_bold"
+                    android:maxLines="1"
+                    android:text="@string/add_web_url"
+                    android:textColor="@color/ColorWhite"
+                    android:textSize="@dimen/_12ssp"
+                    tools:ignore="RtlSymmetry" />
+
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
 
 </LinearLayout>

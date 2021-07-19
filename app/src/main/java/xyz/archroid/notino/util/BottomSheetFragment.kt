@@ -209,13 +209,13 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         }
 
 
-        ly_addImage.setOnClickListener {
+        btn_addImage.setOnClickListener {
             val intent = Intent("bottom_sheet_action")
             intent.putExtra("action", "image")
             LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
         }
 
-        ly_addURL.setOnClickListener {
+        btn_addWebUrl.setOnClickListener {
             val intent = Intent("bottom_sheet_action")
             intent.putExtra("action", "webUrl")
             LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
